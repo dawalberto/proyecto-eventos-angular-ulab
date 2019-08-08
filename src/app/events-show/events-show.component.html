@@ -1,0 +1,15 @@
+<div class="row" *ngIf='events.length' >
+    <div class="col-6 mt-4" *ngFor='let event of events'>
+        <div class="card">
+            <img [src]="event.image" class="card-img-top" alt="imagen del evento">
+            <div class="card-body">
+                <h4 class="card-title">{{ event.title }}</h4>
+                <p class="card-text">{{ event.description }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                <span>{{ event.date }}</span>
+                <span class='float-right'>{{ event.price }} €</span>
+            </div>
+        </div>
+    </div>
+</div>
