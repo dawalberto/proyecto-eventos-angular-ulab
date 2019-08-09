@@ -22,6 +22,9 @@
               <input type="radio" autocomplete="off" (click)="orderByPrice('desc')"> DESC
             </label>
         </li>
+        <li class="ml-3">
+            <button class="btn btn-success" (click)='toggleShowNewEvent()'>Añadir evento</button>
+        </li>
     </ul>
 </nav>
 
@@ -35,13 +38,38 @@
     </div>
 </form>
 
+<form action="" class="mt-4" *ngIf='showNewEvent' (submit)='addEvent()'>
+    <div class="form-group">
+        <label for="">Título</label>
+        <input type="text" name="titulo" class="form-control" [(ngModel)]='newEvent.title'>
+    </div>
+    <div class="form-group">
+        <label for="">Fecha</label>
+        <input type="text" name="fecha" class="form-control" [(ngModel)]='newEvent.date'>
+    </div>
+    <div class="form-group">
+        <label for="">Descripción</label>
+        <textarea rows="3" name="descripcion" class="form-control" [(ngModel)]='newEvent.description'></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Precio</label>
+        <input type="text" name="precio" class="form-control" [(ngModel)]='newEvent.price'>
+    </div>
+    <div class="form group">
+        <label for="">Imagen</label>
+        <input type="file" name="imagens" class="form-control" #fileImage (change)='changeImage(fileImage)'>
+    </div>
+    <img [src]="newEvent.image" alt="Imagen del evento" *ngIf='newEvent.image'>
+    <button type="submit" class="btn btn-primary d-block m-2">Crear</button>
+</form>
+
 <div class="row" *ngIf='events.length' >
     <div class="col-6 mt-4" *ngFor='let event of events | eventFilter:filterSearch | eventOrderBy:orderBy:ascOrDesc'>
         <div class="card">
             <img [src]="event.image" class="card-img-top" alt="imagen del evento">
             <div class="card-body">
                 <h4 class="card-title">{{ event.title | titlecase }}</h4>
-                <p class="card-text">{{ event.description }}</p>
+                <p class="card-text" [innerText]='event.description'></p>
             </div>
             <div class="card-footer text-muted">
                 <span>{{ event.date | date:'dd/MM/y' }}</span>

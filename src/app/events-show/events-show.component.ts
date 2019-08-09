@@ -57,6 +57,44 @@ export class EventsShowComponent implements OnInit {
 
   ascOrDesc:string = 'asc'
 
+  newEvent: IEvent = {
+    title: '',
+    image: '',
+    date: '',
+    description: '',
+    price: 0
+  }
+
+  showNewEvent:boolean = false
+
+  addEvent() {
+    if (this.newEvent.title !== '' && this.newEvent.image !== '' && this.newEvent.date !== '' && this.newEvent.description !== '') {
+      this.events.push(this.newEvent)
+      this.newEvent = {
+        title: '',
+        image: '',
+        date: '',
+        description: '',
+        price: 0
+      }
+    } else {
+      alert('Rellene todos los campos')
+    }
+  }
+
+  changeImage(fileInput: HTMLInputElement) {
+    if (!fileInput.files || fileInput.files.length === 0) { return }
+    const reader:FileReader = new FileReader()
+    reader.readAsDataURL(fileInput.files[0])
+    reader.addEventListener('loadend', e => {
+      this.newEvent.image = reader.result.toString()
+    })
+  }
+
+  toggleShowNewEvent() {
+    this.showNewEvent = !this.showNewEvent
+  }
+
   orderByDate(ascOrDesc) {
     this.orderBy = 'date'
     this.ascOrDesc = ascOrDesc
