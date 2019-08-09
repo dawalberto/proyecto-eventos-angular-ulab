@@ -1,10 +1,26 @@
 <nav class="navbar navbar-light bg-light justify-content-between mt-3">
     <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a href="#" class="nav-link" (click)="orderByDate()">Ordenar por fecha</a>
+        <li class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" autocomplete="off" disabled> Ordenar por fecha
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" autocomplete="off" (click)="orderByDate('asc')"> ASC
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" autocomplete="off" (click)="orderByDate('desc')"> DESC
+            </label>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link" (click)="orderByPrice()">Ordenar por precio</a>
+        <li class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" autocomplete="off" disabled> Ordenar por precio
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" autocomplete="off" (click)="orderByPrice('asc')"> ASC
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" autocomplete="off" (click)="orderByPrice('desc')"> DESC
+            </label>
         </li>
     </ul>
 </nav>
@@ -20,7 +36,7 @@
 </form>
 
 <div class="row" *ngIf='events.length' >
-    <div class="col-6 mt-4" *ngFor='let event of events | eventFilter:filterSearch | eventOrderBy:orderBy'>
+    <div class="col-6 mt-4" *ngFor='let event of events | eventFilter:filterSearch | eventOrderBy:orderBy:ascOrDesc'>
         <div class="card">
             <img [src]="event.image" class="card-img-top" alt="imagen del evento">
             <div class="card-body">

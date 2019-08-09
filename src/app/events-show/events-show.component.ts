@@ -52,15 +52,19 @@ export class EventsShowComponent implements OnInit {
   ]
 
   filterSearch: string = ''
-  
+
   orderBy:string = 'date'
 
-  orderByDate() {
+  ascOrDesc:string = 'asc'
+
+  orderByDate(ascOrDesc) {
     this.orderBy = 'date'
+    this.ascOrDesc = ascOrDesc
   }
 
-  orderByPrice() {
+  orderByPrice(ascOrDesc) {
     this.orderBy = 'price'
+    this.ascOrDesc = ascOrDesc
   }
 
 }

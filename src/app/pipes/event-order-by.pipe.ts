@@ -7,16 +7,28 @@ import { IEvent } from '../../../interfaces/i-event';
 
 export class EventOrderByPipe implements PipeTransform {
 
-  transform(events:IEvent[], orderBy:string) {
+  transform(events:IEvent[], orderBy:string, ascOrDesc:string) {
 
     if (orderBy === 'date') {
-      return events.sort((a, b) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime()
-      })
+      if (ascOrDesc === 'desc') {
+        return events.sort((a, b) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime()
+        })
+      } else {
+        return events.sort((a, b) => {
+          return new Date(a.date).getTime() - new Date(b.date).getTime()
+        })
+      }
     } else if (orderBy === 'price') {
-      return events.sort((a, b) => {
-        return a.price - b.price
-      })
+      if (ascOrDesc === 'desc') {
+        return events.sort((a, b) => {
+          return b.price - a.price
+        })
+      } else {
+        return events.sort((a, b) => {
+          return a.price - b.price
+        })
+      }
     }
 
   }
