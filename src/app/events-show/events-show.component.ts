@@ -27,9 +27,40 @@ export class EventsShowComponent implements OnInit {
       date: new Date(2019, 11, 15).toDateString(),
       description: 'Encuentro de malabaristas y artes cirquenses',
       price: 7
+    },
+    {
+      title: 'Fiesta playera',
+      image: 'assets/img3.jpg',
+      date: new Date(2019, 7, 8).toDateString(),
+      description: 'Fiesta playera en Alicante',
+      price: 3
+    },
+    {
+      title: 'Noche vieja en Londres',
+      image: 'assets/img4.jpg',
+      date: new Date(2019, 11, 31).toDateString(),
+      description: 'Noche vieja en Londres',
+      price: 70
+    },
+    {
+      title: 'Encuentro malabares Petrer',
+      image: 'assets/img5.jpg',
+      date: new Date(2020, 3, 6).toDateString(),
+      description: 'Encuentro ArtenBitrir',
+      price: 0
     }
   ]
-  filterSearch: string = ''
 
+  filterSearch: string = ''
+  
+  orderBy:string = 'date'
+
+  orderByDate() {
+    this.orderBy = 'date'
+  }
+
+  orderByPrice() {
+    this.orderBy = 'price'
+  }
 
 }
