@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { EventsShowComponent } from './events-show/events-show.component';
 import { EventFilterPipe } from './pipes/event-filter.pipe';
 import { EventOrderByPipe } from './pipes/event-order-by.pipe';
+import { EventItemComponent } from './event-item/event-item.component';
+import { EventAddComponent } from './event-add/event-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsShowComponent,
     EventFilterPipe,
-    EventOrderByPipe
+    EventOrderByPipe,
+    EventItemComponent,
+    EventAddComponent
   ],
   imports: [
     BrowserModule,
@@ -21,4 +25,5 @@ import { EventOrderByPipe } from './pipes/event-order-by.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

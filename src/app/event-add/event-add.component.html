@@ -1,0 +1,24 @@
+<form action="" class="mt-4" (submit)='addEvent()'>
+    <div class="form-group">
+        <label for="">Título</label>
+        <input type="text" name="titulo" class="form-control" [(ngModel)]='newEvent.title'>
+    </div>
+    <div class="form-group">
+        <label for="">Fecha</label>
+        <input type="text" name="fecha" class="form-control" [(ngModel)]='newEvent.date'>
+    </div>
+    <div class="form-group">
+        <label for="">Descripción</label>
+        <textarea rows="3" name="descripcion" class="form-control" [(ngModel)]='newEvent.description'></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Precio</label>
+        <input type="text" name="precio" class="form-control" [(ngModel)]='newEvent.price'>
+    </div>
+    <div class="form group">
+        <label for="">Imagen</label>
+        <input type="file" name="imagens" class="form-control" #fileImage (change)='changeImage(fileImage)'>
+    </div>
+    <img [src]="newEvent.image" alt="Imagen del evento" *ngIf='newEvent.image'>
+    <button type="submit" class="btn btn-primary d-block m-2">Crear</button>
+</form>
