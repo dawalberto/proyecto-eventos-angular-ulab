@@ -12,7 +12,11 @@ export class EventsShowComponent implements OnInit {
   constructor(private eventsService:EventsService) { }
 
   ngOnInit() {
-    this.events = this.eventsService.getEvents()
+    this.eventsService.getEvents()
+      .subscribe(
+        res => this.events = res,
+        err => console.log(err)
+      )
   }
 
   events: IEvent[] = []
@@ -53,6 +57,7 @@ export class EventsShowComponent implements OnInit {
 
   deleteEvent(index) {
     this.events = this.events.filter((event, i) => i != index)
+    // this.eventsService.deleteEvent()
   }
 
 }

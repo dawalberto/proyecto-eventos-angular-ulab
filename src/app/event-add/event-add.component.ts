@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IEvent } from 'interfaces/i-event';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-event-add',
@@ -8,7 +9,7 @@ import { IEvent } from 'interfaces/i-event';
 })
 export class EventAddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventsService:EventsService) { }
 
   ngOnInit() {
   }
@@ -26,6 +27,11 @@ export class EventAddComponent implements OnInit {
   addEvent() {
     if (this.newEvent.title !== '' && this.newEvent.image !== '' && this.newEvent.date !== '' && this.newEvent.description !== '') {
       this.eventAddEvent.emit(this.newEvent)
+      this.eventsService.postEvents(this.newEvent)
+        .subscribe(
+          res => console.log('res', res),
+          err => console.log('err', err)
+        )
       this.newEvent = {
         title: '',
         image: '',
