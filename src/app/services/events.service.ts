@@ -24,6 +24,15 @@ export class EventsService {
 
   }
 
+  getEventById(id:number):Observable<IEvent> {
+
+    return this.http.get<{ event:IEvent }>(SERVICES + '/events/' + id).pipe(
+      map(res => res.event),
+      catchError((err:HttpErrorResponse) => throwError(`Error. Estado: ${ err.status }. Mensaje: ${ err.message }`))
+    )
+
+  }
+
   postEvents(event:IEvent):Observable<IEvent> {
 
     return this.http.post<PostEventResponse>(SERVICES + '/events', event).pipe(

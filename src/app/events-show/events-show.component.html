@@ -22,9 +22,6 @@
               <input type="radio" autocomplete="off" (click)="orderByPrice('desc')"> DESC
             </label>
         </li>
-        <li class="ml-3">
-            <button class="btn btn-success" (click)='toggleShowNewEvent()'>Añadir evento</button>
-        </li>
     </ul>
 </nav>
 
@@ -47,7 +44,9 @@
 <div class="row" *ngIf='events.length'>
     <app-event-item
     [event]='event'
-    (eventDeleteEvent)='deleteEvent(i)'
+    (eventDeleteEvent)='deleteEvent(event.id)'
+    (click)="detailEvent(event.id)"
+    [routerLink]="['/events/' + event.id]"
     *ngFor='let event of events | eventFilter:filterSearch | eventOrderBy:orderBy:ascOrDesc; let i = index'
      >
     </app-event-item>

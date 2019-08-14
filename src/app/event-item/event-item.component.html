@@ -7,7 +7,7 @@
         </div>
         <button class="btn btn-danger" (click)='deleteEvent()'>Eliminar</button>
         <div class="card-footer text-muted">
-            <span>{{ event.date | date:'dd/MM/y' }}</span>
+            <span>{{ event.date }}</span>
             <span class='float-right'>{{ event.price | currency:'EUR':true }}</span>
         </div>
     </div>

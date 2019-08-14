@@ -20,3 +20,8 @@ export interface DeleteEventResponse {
     ok: boolean;
     error?: string;
 }
+
+export interface EventById {
+    ok: boolean;
+    event?: IEvent;
+}

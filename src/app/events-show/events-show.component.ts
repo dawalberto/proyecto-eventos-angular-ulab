@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IEvent } from 'interfaces/i-event';
 import { EventsService } from '../services/events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-show',
@@ -9,7 +10,7 @@ import { EventsService } from '../services/events.service';
 })
 export class EventsShowComponent implements OnInit {
 
-  constructor(private eventsService:EventsService) { }
+  constructor(private eventsService:EventsService, private router:Router) { }
 
   ngOnInit() {
     this.eventsService.getEvents()
@@ -17,6 +18,16 @@ export class EventsShowComponent implements OnInit {
         res => this.events = res,
         err => console.log(err)
       )
+  }
+  
+  detailEvent(id:number) {
+    // this.eventsService.getEventById(id)
+    //   .subscribe(
+    //     res => console.log(res),
+    //     err => console.log(err)
+    //   )
+    // console.log('hola wenas')
+    // this.router.navigate['/events/add']
   }
 
   events: IEvent[] = []
